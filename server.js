@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
 app.use('/users', users);
 
-var port = process.env.PORT || '4000';
+var port = process.env.PORT || '4002';
 
 app.listen(port, function() {
 	console.log('server is running and jumping');

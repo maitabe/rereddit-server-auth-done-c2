@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router()
+var router = express.Router();
 var mongoose = require('mongoose');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'myLittleSecret'});
@@ -20,12 +20,12 @@ router.post('/register', function(req, res, next){
 
   user.username = req.body.username;
 
-  user.setPassword(req.body.password)
+  user.setPassword(req.body.password);
 
   user.save(function (err){
     if(err){ return next(err); }
 
-    return res.json({token: user.generateJWT()})
+    return res.json({token: user.generateJWT()});
   });
 });
 
@@ -43,6 +43,15 @@ router.post('/login', function(req, res, next){
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
+
+//get all the users from the DB
+router.get('/users', function(req, res, next){
+  User.find(function(err, users) {
+    if(err){return next(err);}
+
+    res.json(users);
+  });
 });
 
 router.get('/posts', function(req, res, next) {
@@ -63,7 +72,7 @@ router.post('/posts', auth, function(req, res, next) {
 
     res.json(post);
   });
-}); 
+});
 
 router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
