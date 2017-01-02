@@ -7,7 +7,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 
    auth.getToken = function (){
      return $window.localStorage['rereddit-jwt'];
-   }
+   };
 
    auth.isLoggedIn = function(){
      var token = auth.getToken();

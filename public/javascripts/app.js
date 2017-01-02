@@ -43,7 +43,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
           }, 100);
         }
       }]
-    })
+    });
 
   $urlRouterProvider.otherwise('home');
 }]);
