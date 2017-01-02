@@ -45,16 +45,9 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
-//get all the users from the DB
-router.get('/users', function(req, res, next){
-  User.find(function(err, users) {
-    if(err){return next(err);}
 
-    res.json(users);
-  });
-});
 
-router.get('/posts', function(req, res, next) {
+router.get('/posts', auth, function(req, res, next) {
   Post.find(function(err, posts){
     if(err){ return next(err); }
 
@@ -62,7 +55,7 @@ router.get('/posts', function(req, res, next) {
   });
 });
 
-router.post('/posts', auth, function(req, res, next) {
+router.post('/posts', function(req, res, next) {
   var post = new Post(req.body);
 
   console.log(req.user);

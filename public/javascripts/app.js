@@ -50,7 +50,9 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
       controller: 'UsersCtrl',
       resolve: {
         users: ['usersService', function(usersService) {
+          console.log('entered resolved');
           return usersService.getAll();
+          console.log('finished resolve')
         }]
       }
     });

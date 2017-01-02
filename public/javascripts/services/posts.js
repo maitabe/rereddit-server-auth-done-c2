@@ -3,8 +3,10 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
     posts: [],
 
     getAll: function() {
-      return $http.get('/posts').then(function(data) {
-  
+      return $http.get('/posts', {
+        headers: {"Authorization": 'Bearer ' + auth.getToken()}
+      }).then(function(data) {
+
         angular.copy(data.data, postService.posts);
       });
     },
@@ -39,7 +41,7 @@ app.factory('posts', ['$http', 'auth', function($http, auth) {
       });
     }
   };
-  
+
 
   return postService;
 }]);
