@@ -52,7 +52,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
         users: ['usersService', function(usersService) {
           console.log('entered resolved');
           return usersService.getAll();
-          console.log('finished resolve')
+          console.log('finished resolve');
         }]
       }
     });
